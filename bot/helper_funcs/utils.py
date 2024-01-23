@@ -3,15 +3,15 @@
 import logging
 logging.basicConfig(
     level=logging.DEBUG,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message_id)s"
 )
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 LOGGER = logging.getLogger(__name__)
 
 import os
 from bot import data
-from bot.plugins.incoming_message_fn import incoming_compress_message_f
-from pyrogram.types import Message
+from bot.plugins.incoming_message_id_fn import incoming_compress_message_id_f
+from pyrogram.types import message_id
 
 
 def checkKey(dict, key):
@@ -25,10 +25,10 @@ async def on_task_complete():
     if len(data) > 0:
       await add_task(data[0])
 
-async def add_task(message: Message):
+async def add_task(message_id: message_id):
     try:
         os.system('rm -rf /app/downloads/*')
-        await incoming_compress_message_f(message)
+        await incoming_compress_message_id_f(message_id)
     except Exception as e:
         LOGGER.info(e)  
     await on_task_complete()
