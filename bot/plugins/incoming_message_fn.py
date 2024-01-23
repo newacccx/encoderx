@@ -91,7 +91,7 @@ async def incoming_start_message_f(bot, update):
                 ]
             ]
         ),
-        reply_to_id=update.id,
+        reply_to_message_id=update.message_id,
     )
     
 async def incoming_compress_message_f(update):
@@ -139,7 +139,7 @@ async def incoming_compress_message_f(update):
   #    await bot.send_message(
   #      chat_id=update.chat.id,
   #      text="🤬 Reply to telegram media 🤬",
-  #      reply_to_id=update.id
+  #      reply_to_message_id=update.message_id
   #    )
   #  except:
   #    pass
@@ -155,7 +155,7 @@ async def incoming_compress_message_f(update):
   #        await bot.send_message(
   #          chat_id=update.chat.id,
   #          text="🤬 Value should be 10 to 90",
-  #          reply_to_id=update.id
+  #          reply_to_message_id=update.message_id
   #        )
   #        return
   #      except:
@@ -191,7 +191,7 @@ async def incoming_compress_message_f(update):
   sent_message = await bot.send_message(
   chat_id=update.chat.id,
   text=Localisation.DOWNLOAD_START,
-  reply_to_id=update.id
+  reply_to_message_id=update.message_id
               )
   chat_id = LOG_CHANNEL
   utc_now = datetime.datetime.utcnow()
@@ -207,7 +207,7 @@ async def incoming_compress_message_f(update):
       with open(status, 'w') as f:
         statusMsg = {
           'running': True,
-          'message': sent_message.id
+          'message': sent_message.message_id
         }
 
         json.dump(statusMsg, f, indent=2)
@@ -271,7 +271,7 @@ async def incoming_compress_message_f(update):
      #           ]
     #        ]
    #     ),
-  #      reply_to_id=update.id
+  #      reply_to_message_id=update.message_id
  #     )
     #except:
     #  pass
@@ -350,7 +350,7 @@ async def incoming_compress_message_f(update):
         force_document=True,
         #duration=duration,
         thumb="thumb.jpg",
-        reply_to_id=update.id,
+        reply_to_message_id=update.message_id,
         progress=progress_for_pyrogram,
         progress_args=(
           bot,
@@ -452,5 +452,5 @@ async def incoming_cancel_message_f(bot, update):
     await bot.send_message(
       chat_id=update.chat.id,
       text="No active compression exists",
-      reply_to_id=update.id
+      reply_to_message_id=update.message_id
     )
