@@ -85,7 +85,7 @@ if __name__ == "__main__" :
     )
     app.add_handler(incoming_start_message_handler)
 
-    await message.reply_text(settings_message)
+              await message.reply_text(settings_message)
     
 
     @app.on_message(filters.incoming & filters.command(["crf", f"crf@{BOT_USERNAME}"]))
